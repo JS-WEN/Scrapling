@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "scrapling": {
+      "command": "scrapling",
+      "args": ["mcp"],
+      "description": "Scrapling Web Scraping - Adaptive scraping with anti-bot bypass and browser automation"
+    }
+  }
+}
