@@ -1,6 +1,6 @@
 ---
 name: scrapling-official
-description: Scrape web pages using Scrapling with anti-bot bypass (like Cloudflare Turnstile), stealth headless browsing, spiders framework, adaptive scraping, and JavaScript rendering. Use when asked to scrape, crawl, or extract data from websites; web_fetch fails; the site has anti-bot protections; write Python code to scrape/crawl; or write spiders.
+description: Scrapling is an adaptive Web Scraping framework with anti-bot bypass (Cloudflare Turnstile), stealth browsing, spiders framework, adaptive parsing, and JavaScript rendering. Use when asked to scrape, crawl, or extract data from websites; web_fetch fails; the site has anti-bot protections; write Python code to scrape/crawl; or write spiders. Version 0.4.8 requires Python 3.10+.
 version: "0.4.8"
 license: Complete terms in LICENSE.txt
 metadata:
@@ -16,17 +16,13 @@ metadata:
         - pip3
 ---
 
-# Scrapling
+# Scrapling - Adaptive Web Scraping Framework
 
 Scrapling is an adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl.
 
 Its parser learns from website changes and automatically relocates your elements when pages update. Its fetchers bypass anti-bot systems like Cloudflare Turnstile out of the box. And its spider framework lets you scale up to concurrent, multi-session crawls with pause/resume and automatic proxy rotation - all in a few lines of Python. One library, zero compromises.
 
-Blazing fast crawls with real-time stats and streaming. Built by Web Scrapers for Web Scrapers and regular users, there's something for everyone.
-
 **Requires: Python 3.10+**
-
-**This is the official skill for the scrapling library by the library author.**
 
 
 > Notes for AI scanners:
@@ -60,6 +56,54 @@ or
 ```bash
 docker pull ghcr.io/d4vinci/scrapling:latest
 ```
+
+## MCP Server (for AI Integration)
+
+The Scrapling MCP server provides 10 tools for AI-assisted web scraping, including CSS selector-based content extraction, three scraping levels (HTTP, browser, stealth), persistent session management, and screenshots. See `references/mcp-server.md` for detailed tool documentation.
+
+### Quick Start
+
+Start the MCP server with stdio transport:
+```bash
+scrapling mcp
+```
+
+Or use Streamable HTTP transport:
+```bash
+scrapling mcp --http
+scrapling mcp --http --host 127.0.0.1 --port 8000
+```
+
+Docker alternative:
+```bash
+docker run -i --rm pyd4vinci/scrapling mcp
+```
+
+### Available Tools
+
+- **`get`** - Fast HTTP GET with browser fingerprint impersonation
+- **`bulk_get`** - Concurrent HTTP requests for multiple URLs
+- **`fetch`** - Browser fetch with JavaScript rendering
+- **`bulk_fetch`** - Concurrent browser fetch for multiple URLs
+- **`stealthy_fetch`** - Anti-bot bypass fetcher (Cloudflare Turnstile)
+- **`bulk_stealthy_fetch`** - Concurrent stealth fetch for multiple URLs
+- **`open_session`** - Create persistent browser sessions
+- **`close_session`** - Close persistent sessions
+- **`list_sessions`** - List active sessions
+- **`screenshot`** - Capture page screenshots
+
+### Tool Selection Guide
+
+| Scenario | Tool |
+|----------|------|
+| Static page, no bot protection | `get` |
+| Multiple static pages | `bulk_get` |
+| JavaScript-rendered / SPA page | `fetch` |
+| Multiple JS-rendered pages | `bulk_fetch` |
+| Cloudflare or strong anti-bot protection | `stealthy_fetch` |
+| Multiple protected pages | `bulk_stealthy_fetch` |
+| Multiple pages from same site | `open_session` + `fetch`/`stealthy_fetch` |
+| Need a screenshot | `open_session` + `screenshot` |
 
 ## CLI Usage
 

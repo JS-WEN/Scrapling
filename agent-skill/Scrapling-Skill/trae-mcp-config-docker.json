@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "scrapling": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "ghcr.io/d4vinci/scrapling", "mcp"],
+      "description": "Scrapling Web Scraping (Docker) - Adaptive scraping with anti-bot bypass and browser automation",
+      "env": {}
+    }
+  }
+}
